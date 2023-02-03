@@ -1,12 +1,27 @@
 var arr = []
 
+function validaNum(num) {
+    if (num >= 1 && num <= 100) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function numExistente(arr, num) {
+    if (arr.indexOf(num) == -1) {
+        return true
+    } else {
+        return false
+    }
+}
+ 
 function adicionar() {
     let txtnum = document.getElementById('txtn')
     let num = Number(txtnum.value)
     let sel = document.getElementById('sel')
-    let res = document.getElementById('res') 
-    if (num >= 1 && num <= 100) {
-        if (arr.indexOf(num) == -1) {
+    if (validaNum(num)) {
+        if (numExistente(arr, num)) {
             res.innerHTML = ''
             arr.push(num)
             sel.options[sel.options.length] = new Option(
@@ -17,6 +32,8 @@ function adicionar() {
     } else {
         window.alert('[ERRO] Valor invalido! Digite um numero entre 1 e 100!')
     }
+    txtnum.value = ''
+    txtnum.focus()     
 }
 
 function analisar() {
@@ -47,10 +64,10 @@ function analisar() {
 
 function recomecar() {
     arr = []
-    let num = document.getElementById('txtn')
+    let txtnum = document.getElementById('txtn')
     let sel = document.getElementById('sel')
     let res = document.getElementById('res')
-    num.value = ''
+    txtnum.value = ''
     sel.options.length = 0
     res.innerHTML = ''
 }
